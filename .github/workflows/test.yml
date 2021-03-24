@@ -1,28 +1,41 @@
-name: Test 
+name: Test
 
 env:
   CI: true
-  DEBUG: pw:api  
+  DEBUG: pw:api
 
 on:
   push:
 
 jobs:
   run:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14'
-    - uses: bahmutov/npm-install@v1 
-    - name: run features
-      run: npm run test
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-result-report
-        path: reports/report.html
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - uses: bahmutov/npm-install@v1
+      - name: run features
+        run: npm run test
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-result-report
+          path: reports/report.html
+      - name: Copy reports
+        run: |
+          ls -al reports/
+          mkdir public
+          cp -a reports/. public/
+          rm public/.gitignore
+          ls -al public/
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
