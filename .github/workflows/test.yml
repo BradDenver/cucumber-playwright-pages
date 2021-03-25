@@ -36,11 +36,15 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
+      - name: Set timestamp
+        shell: bash
+        run: echo "::set-output name=timestamp::$(date +'%s')"
+        id: set_timestamp
       - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          destination_dir: ${{ steps.extract_branch.outputs.branch }}
+          destination_dir: ${{ steps.extract_branch.outputs.branch }}/${{ steps.set_timestamp.outputs.timestamp }}
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
