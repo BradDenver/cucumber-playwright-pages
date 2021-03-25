@@ -1,0 +1,43 @@
+---
+# front matter tells Jekyll to process Liquid
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+  </head>
+  <body>
+    <h1>E2E Test Runs</h1>
+    <div>
+      {% assign reports = site.static_files | where: "name", "report.html" %}
+
+      <!-- look for reports nested as /{branch}/{timestamp}/report.html -->
+      {% assign branches = "" | split:"" %}
+      {% for file in reports %}
+        {% assign parts = file.path | split: "/" %}
+        {% if parts.size != 4  %}
+          {% continue %}
+        {% endif %}
+        {% assign branch_as_array = parts[1] | split: "/"  %}
+        {% assign branches = branches | concat: branch_as_array %}
+      {% endfor %}
+      {% assign branches = branches | uniq %}
+
+      {% for branch in branches %}
+      <details><summary>branch: <strong>{{branch}}</strong></summary>
+        <div style="margin-left: 2rem;">
+          {% for file in reports %}
+            {% assign parts = file.path | split: "/" %}
+            {% if parts.size != 4 or parts[1] != branch  %}
+              {% continue %}
+            {% endif %}
+            {% assign ts = parts[2]  %}
+            <p>Run @ <a href="{{ site.baseurl }}/{{ branch }}/{{ ts }}/report.html">{{ ts | date: "%F, %T" }}</a></p>
+          {% endfor %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </body>
+</html>
