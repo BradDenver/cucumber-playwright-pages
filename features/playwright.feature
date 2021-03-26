@@ -10,3 +10,6 @@ Feature: Playwright docs
     When Change theme to "dark" mode
     Then Snapshot
 
+  Scenario: Unimplemented scenario
+    When I do something unexpected
+    Then who knows what will happen
