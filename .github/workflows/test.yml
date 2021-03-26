@@ -49,3 +49,8 @@ jobs:
           publish_dir: ./public
           user_email: 'github-actions[bot]@users.noreply.github.com'
           user_name: 'github-actions[bot]'
+      - name: Create commit comment
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: |
+            Test report published @ <https://braddenver.github.io/cucumber-playwright-pages/${{ steps.extract_branch.outputs.branch }}/${{ steps.set_timestamp.outputs.timestamp }}/report.html>
