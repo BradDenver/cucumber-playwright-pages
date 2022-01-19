@@ -18,10 +18,7 @@
         {% assign parts = file.path | split: "/" %}
         {% assign parentIndex = parts.size | minus: 2 %}
         {% assign parent = parts | slice: parentIndex | first %}
-        {{ parent }}
-        {% if parts.size < 4  %}
-          {% continue %}
-        {% elsif parent == "1616639751"  %}
+        {% if parts.size < 4 or parent == "1616639751"  %}
           {% continue %}
         {% endif %}
         {% assign branch_end = parts.size | minus: 2 %}
