@@ -19,7 +19,9 @@
         {% assign parentIndex = parts.size | minus: 2 %}
         {% assign parent = parts | slice: parentIndex %}
         {{ parent }}
-        {% if parts.size < 4 || parent == "1616639751"  %}
+        {% if parts.size < 4  %}
+          {% continue %}
+        {% elseif parent == "1616639751"  %}
           {% continue %}
         {% endif %}
         {% assign branch_end = parts.size | minus: 2 %}
