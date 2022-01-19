@@ -15,7 +15,6 @@
       <!-- look for reports nested as /{branch}/{timestamp}/report.html -->
       {% assign branches = "" | split:"" %}
       {% for file in reports %}
-        {{ file | inspect }}
         {% assign parts = file.path | split: "/" %}
         {% if parts.size < 4  %}
           {% continue %}
@@ -24,6 +23,8 @@
         {% assign branch_as_array = parts | slice: 0, -2 | join: "/" | remove_first: "/" | split: "~" %}
         {% assign branches = branches | concat: branch_as_array %}
         {{ branch_as_array | inspect }}
+        {{ parts | slice: 0, -2 | inspect }}
+        {{ parts | slice: 0, -2 | join: "/" | inspect }}
       {% endfor %}
       {{ branches | inspect }}
       {% assign branches = branches | uniq %}
