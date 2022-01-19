@@ -9,5 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: echo stuff
-      run: echo "${{GITHUB_REF_NAME}}"
+      run: echo "$GITHUB_REF_NAME"
+    - name: echo more stuff
+      run: echo "${{github.ref_name}}"
+    - name: echo even more stuff
+      run: echo "${{github.ref}}"
+    - name: Print branch name
+      run: echo "{{github.event_name == 'pull_request' && ${GITHUB_HEAD_REF} || ${GITHUB_REF#refs/heads/} }}"
+    - name: Print branch name2
+      run: echo "${{github.event_name == 'pull_request' && '${GITHUB_HEAD_REF}' || '${GITHUB_REF#refs/heads/}' }}"
  
