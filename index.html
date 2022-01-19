@@ -15,6 +15,7 @@
       <!-- look for reports nested as /{branch}/{timestamp}/report.html -->
       {% assign branches = "" | split:"" %}
       {% for file in reports %}
+        {{ file | inspect }}
         {% assign parts = file.path | split: "/" %}
         {% if parts.size != 4  %}
           {% continue %}
