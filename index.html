@@ -20,7 +20,7 @@
         {% if parts.size != 4  %}
           {% continue %}
         {% endif %}
-        {% assign branch_as_array = parts[1] | split: "/"  %}
+        {% assign branch_as_array = parts[1] | split: "~"  %}
         {% assign branches = branches | concat: branch_as_array %}
       {% endfor %}
       {% assign branches = branches | uniq %}
