@@ -8,7 +8,7 @@
     <title>Home</title>
   </head>
   <body>
-    <h1>E2E Test Runs4</h1>
+    <h1>E2E Test Runs</h1>
     <div>
       {% assign reports = site.static_files | where: "name", "report.html" %}
 
@@ -21,6 +21,7 @@
           {% continue %}
         {% endif %}
         {% assign branch_as_array = parts[1] | split: "~"  %}
+        {% assign branch_as_array = parts | slice: 0, -2 | join: "/" | remove_first: "/" | split: "~" %}
         {% assign branches = branches | concat: branch_as_array %}
         {{ branch_as_array | inspect }}
       {% endfor %}
