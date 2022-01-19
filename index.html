@@ -22,9 +22,9 @@
         {% endif %}
         {% assign branch_as_array = parts[1] | split: "~"  %}
         {% assign branches = branches | concat: branch_as_array %}
-        {{ branches | inspect }}
+        {{ branch_as_array | inspect }}
       {% endfor %}
-      {{ branches | branch_as_array }}
+      {{ branches | inspect }}
       {% assign branches = branches | uniq %}
 
       {% for branch in branches %}
