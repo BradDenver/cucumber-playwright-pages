@@ -17,11 +17,11 @@
       {% for file in reports %}
         {% assign parts = file.path | split: "/" %}
         {% assign parentIndex = parts.size | minus: 2 %}
-        {% assign parent = parts | slice: parentIndex %}
+        {% assign parent = parts | slice: parentIndex | first %}
         {{ parent }}
         {% if parts.size < 4  %}
           {% continue %}
-        {% elseif parent == "1616639751"  %}
+        {% elsif parent == "1616639751"  %}
           {% continue %}
         {% endif %}
         {% assign branch_end = parts.size | minus: 2 %}
