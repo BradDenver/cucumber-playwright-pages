@@ -16,7 +16,7 @@
       {% assign branches = "" | split:"" %}
       {% for file in reports %}
         {% assign parts = file.path | split: "/" %}
-        {% if parts.size < 4  %}
+        {% if parts.size < 4 || parts[parts.size] == "1616639751"  %}
           {% continue %}
         {% endif %}
         {% assign branch_end = parts.size | minus: 2 %}
