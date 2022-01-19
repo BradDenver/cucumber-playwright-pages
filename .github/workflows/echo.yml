@@ -1,0 +1,13 @@
+name: echo
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: echo stuff
+      run: echo "${{GITHUB_REF_NAME}}"
+ 
