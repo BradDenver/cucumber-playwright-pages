@@ -16,8 +16,10 @@
       {% assign branches = "" | split:"" %}
       {% for file in reports %}
         {% assign parts = file.path | split: "/" %}
-        {{ parts[parts.size] }}
-        {% if parts.size < 4 || parts[parts.size] == "1616639751"  %}
+        {% assign parentIndex = parts.size | minus: 2 %}
+        {% assign parent = parts | silce: parentIndex %}
+        {{ parent }}
+        {% if parts.size < 4 || parent == "1616639751"  %}
           {% continue %}
         {% endif %}
         {% assign branch_end = parts.size | minus: 2 %}
