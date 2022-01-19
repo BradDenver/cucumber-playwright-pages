@@ -17,5 +17,5 @@ jobs:
     - name: Print branch name
       run: echo "{{github.event_name == 'pull_request' && ${GITHUB_HEAD_REF} || ${GITHUB_REF#refs/heads/} }}"
     - name: Print branch name2
-      run: echo "${{github.event_name == 'pull_request' && ${GITHUB_HEAD_REF} || ${GITHUB_REF#refs/heads/} }}"
+      run: echo "${{github.event_name == 'pull_request' && '${GITHUB_HEAD_REF}' || '${GITHUB_REF#refs/heads/}' }}"
  
