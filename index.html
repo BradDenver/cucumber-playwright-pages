@@ -26,7 +26,6 @@
         {% assign branches = branches | push: branch %}
       {% endfor %}
       {% assign branches = branches | uniq %}
-      {{ branches }}
 
       {% for branch in branches %}
       <details><summary>branch: <strong>{{branch}}</strong></summary>
