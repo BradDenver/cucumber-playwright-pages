@@ -10,4 +10,6 @@ jobs:
     steps:
     - name: echo stuff
       run: echo "$GITHUB_REF_NAME"
+    - name: echo more stuff
+      run: echo "${{github.ref_name}}"
  
