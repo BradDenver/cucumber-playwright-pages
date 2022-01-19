@@ -23,7 +23,9 @@
         {% assign branch = parts | slice: 0, branch_end | join: "/" | remove_first: "/" %}
         {% assign branches = branches | push: branch %}
       {% endfor %}
+      {{ branches | inspect }}
       {% assign branches = branches | uniq %}
+      {{ branches | inspect }}
 
       {% for branch in branches %}
       <details><summary>branch: <strong>{{branch}}</strong></summary>
