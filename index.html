@@ -8,7 +8,7 @@
     <title>Home</title>
   </head>
   <body>
-    <h1>E2E Test Runs b</h1>
+    <h1>E2E Test Runs</h1>
     <div>
       {% assign reports = site.static_files | where: "name", "report.html" %}
 
@@ -19,13 +19,10 @@
         {% if parts.size < 4  %}
           {% continue %}
         {% endif %}
+        {% assign branch_end = parts.size - 1 %}
         {% assign branch_as_array = parts[1] | split: "~"  %}
-        {% assign branch_as_array = parts | slice: 0, -2 | join: "/" | remove_first: "/" | split: "~" %}
-        {% assign branches = branches | concat: branch_as_array %}
-        {% assign bend = parts.size - 1 %}
-        {{ branch_as_array | inspect }}
-        {{ parts | slice: 0, bend | inspect }}
-        {{ parts | slice: 0, bend | join: "/" | inspect }}
+        {% assign branch = parts | slice: 0, branch_end | join: "/" | remove_first: "/" %}
+        {% assign branches = branches | push: branch %}
       {% endfor %}
       {{ branches | inspect }}
       {% assign branches = branches | uniq %}
