@@ -8,7 +8,7 @@
     <title>Home</title>
   </head>
   <body>
-    <h1>E2E Test Runs</h1>
+    <h1>E2E Test Runs4</h1>
     <div>
       {% assign reports = site.static_files | where: "name", "report.html" %}
 
@@ -17,7 +17,7 @@
       {% for file in reports %}
         {{ file | inspect }}
         {% assign parts = file.path | split: "/" %}
-        {% if parts.size != 4  %}
+        {% if parts.size < 4  %}
           {% continue %}
         {% endif %}
         {% assign branch_as_array = parts[1] | split: "~"  %}
