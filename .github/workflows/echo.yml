@@ -12,4 +12,6 @@ jobs:
       run: echo "$GITHUB_REF_NAME"
     - name: echo more stuff
       run: echo "${{github.ref_name}}"
+    - name: echo even more stuff
+      run: echo "${{github.ref}}"
  
