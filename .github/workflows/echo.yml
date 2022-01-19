@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: echo stuff
-      run: echo "${{GITHUB_REF_NAME}}"
+      run: echo "$GITHUB_REF_NAME"
  
