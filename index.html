@@ -19,7 +19,7 @@
         {% if parts.size < 4  %}
           {% continue %}
         {% endif %}
-        {% assign branch_end = parts.size - 3 %}
+        {% assign branch_end = parts.size | minus: 2 %}
         {% assign branch = parts | slice: 0, branch_end | join: "/" | remove_first: "/" %}
         {% assign branches = branches | push: branch %}
       {% endfor %}
@@ -32,7 +32,7 @@
         <div style="margin-left: 2rem;">
           {% for file in reports %}
             {% assign parts = file.path | split: "/" %}
-            {% assign branch_end = parts.size - 3 %}
+            {% assign branch_end = parts.size | minus: 2 %}
             {% assign fileBranch = parts | slice: 0, branch_end | join: "/" | remove_first: "/" %}
             {% if parts.size < 4 or fileBranch != branch  %}
               {% continue %}
